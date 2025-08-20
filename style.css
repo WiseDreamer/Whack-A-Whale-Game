@@ -1,0 +1,64 @@
+:root{
+  --bg:#e0f7ff;
+  --hole:#7aa7c7;
+  --whale:#ffffff;
+  --accent:#0a6fb3;
+}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,Segoe UI,Roboto,system-ui,-apple-system,Arial}
+body{background:linear-gradient(180deg,var(--bg),#d0ecff);display:flex;align-items:center;justify-content:center;padding:24px}
+.game{width:720px;max-width:95%;background:rgba(255,255,255,0.85);border-radius:12px;padding:18px;box-shadow:0 6px 18px rgba(10,40,60,0.12)}
+header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+header h1{margin:0;font-size:20px;color:var(--accent)}
+.controls{display:flex;gap:8px;align-items:center}
+.controls select, .controls button{padding:6px 10px;border-radius:6px;border:1px solid rgba(10,111,179,0.15);background:white}
+.status{display:flex;gap:12px;align-items:center}
+.status .score, .status .timer{font-weight:600;color:#0b4f74}
+
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;padding:8px}
+.hole{height:140px;background:linear-gradient(180deg,var(--hole),#5b95b5);border-radius:12px;position:relative;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
+.whale{position:relative;transform:translateY(110%);transition:transform 220ms cubic-bezier(.2,.9,.3,1);cursor:pointer;user-select:none}
+.whale::before{content:"🐳";display:block;font-size:48px;line-height:1}
+.whale.up{transform:translateY(0)}
+.whale.hit{transform:translateY(120%);opacity:0.6;transition:transform 160ms ease-in, opacity 160ms}
+
+/* splash / pop on hit */
+.whale.hit::after{
+  content: "💦";
+  position: absolute;
+  left: 50%;
+  top: -10px;
+  transform: translateX(-50%) scale(0.6) translateY(0);
+  font-size: 22px;
+  opacity: 0;
+  pointer-events: none;
+  animation: splash 520ms cubic-bezier(.2,.9,.3,1) forwards;
+}
+
+@keyframes splash{
+  0%{
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6) translateY(0);
+  }
+  30%{
+    opacity: 1;
+    transform: translateX(-50%) scale(1.05) translateY(-18px) rotate(-8deg);
+  }
+  70%{
+    opacity: 0.9;
+    transform: translateX(-50%) scale(0.95) translateY(-28px) rotate(6deg);
+  }
+  100%{
+    opacity: 0;
+    transform: translateX(-50%) scale(0.6) translateY(-40px) rotate(0deg);
+  }
+}
+
+footer{margin-top:12px;text-align:center;color:#0b4f74;font-size:13px}
+
+/* nice little pop animation */
+@keyframes pop {0%{transform:translateY(110%)}60%{transform:translateY(-8%)}100%{transform:translateY(0)}}
+.whale.appear{animation:pop 300ms cubic-bezier(.2,.9,.3,1)}
+
+/* responsive */
+@media (max-width:420px){.hole{height:100px}.whale::before{font-size:36px}}

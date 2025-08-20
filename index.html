@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Whack A Whale</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game">
+      <header>
+        <h1>Whack A Whale</h1>
+        <div class="controls">
+          <label for="difficulty">Difficulty</label>
+          <select id="difficulty">
+            <option value="easy" selected>Easy</option>
+            <option value="medium">Medium</option>
+            <option value="hard">Hard</option>
+          </select>
+          <button id="start">Start</button>
+        </div>
+        <div class="status">
+          <div class="score">Score: <span id="score">0</span></div>
+          <div class="timer">Time: <span id="time">30</span>s</div>
+        </div>
+      </header>
+
+      <section class="board" id="board">
+        <!-- 9 holes -->
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+        <div class="hole"><div class="whale" data-whale></div></div>
+      </section>
+
+n      <footer>
+        <p>Click the whales before they disappear! Built with HTML/CSS/JS.</p>
+      </footer>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
